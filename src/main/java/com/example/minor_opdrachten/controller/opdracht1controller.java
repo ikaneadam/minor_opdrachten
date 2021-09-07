@@ -19,6 +19,6 @@ public class opdracht1controller {
 
     @GetMapping("/amount/{string}")
     public int getAmountOfWords(@PathVariable String string){
-        return opdracht1Service.getAmountOfWords(string);
+        return opdracht1Service.postAmountOfwords(string);
     }
 }

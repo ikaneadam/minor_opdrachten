@@ -1,6 +1,12 @@
 package com.example.minor_opdrachten.service;
 
+import com.example.minor_opdrachten.Repository.opdracht1Repository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class opdracht1Service {
+    private opdracht1Repository opdracht1Repository = new opdracht1Repository();
+    Logger logger = LoggerFactory.getLogger(opdracht1Service.class);
 
     public String reverseString(String string){
         char[] characterList = string.toCharArray();
@@ -19,5 +25,16 @@ public class opdracht1Service {
 
         String[] listOfWords = string.split("\\s+");
         return listOfWords.length;
+    }
+
+
+    public int postAmountOfwords(String text){
+        if(opdracht1Repository.isTextStored(text)){
+            return opdracht1Repository.getAmountofWordsFromStoredText(text);
+        }
+
+        int amountOfWords = getAmountOfWords(text);
+        opdracht1Repository.insertTextAndAmount(amountOfWords, text);
+        return amountOfWords;
     }
 }
