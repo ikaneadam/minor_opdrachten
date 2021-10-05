@@ -1,34 +1,44 @@
-package com.example.minor_opdrachten.Model;
+package com.example.minor_opdrachten.data.entity;
 
-import com.sun.istack.internal.NotNull;
 
-import java.util.ArrayList;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
+import java.util.UUID;
+
+@Entity
+@Table(name = "Rekening")
 public class Rekening {
-
-    private String id;
-    @NotNull(message = "Name may not be null")
+    @Id
+    @Type(type = "uuid-char")
+    @GeneratedValue
+    private UUID id;
+    @Column(name = "iban")
     private String IBAN;
-    @NotNull
+    @Column(name = "saldo")
     private int Saldo;
-    @NotNull
-    private ArrayList<String> RekeningHouder;
-    @NotNull
+    @Column(name = "rekeninghouder")
+    private String RekeningHouder;
+    @Column(name = "isBlocked")
     private boolean isBlocked;
 
-    public Rekening(String id, String IBAN, int Saldo, ArrayList<String> RekeningHouder, boolean isBlocked) {
-        this.id = id;
+    public Rekening( String IBAN, int Saldo, String RekeningHouder, boolean isBlocked) {
+
         this.IBAN = IBAN;
         this.Saldo = Saldo;
         this.RekeningHouder = RekeningHouder;
         this.isBlocked = isBlocked;
     }
 
-    public String getId() {
+    public Rekening() {
+
+    }
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -48,11 +58,11 @@ public class Rekening {
         Saldo = saldo;
     }
 
-    public ArrayList<String> getRekeningHouder() {
+    public String getRekeningHouder() {
         return RekeningHouder;
     }
 
-    public void setRekeningHouder(ArrayList<String> rekeningHouder) {
+    public void setRekeningHouder(String rekeningHouder) {
         RekeningHouder = rekeningHouder;
     }
 
