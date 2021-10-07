@@ -6,6 +6,7 @@ import java.util.UUID;
 
 public class AccountDto {
     private UUID id;
+    @Digits(integer=6, fraction = 2)
     @NotNull(message = "saldo may not be empty")
     private Integer saldo;
     @NotNull(message = "status may not be empty")
